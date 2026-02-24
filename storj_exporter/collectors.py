@@ -32,7 +32,6 @@ class NodeCollector(StorjCollector):
         for template in _metric_template_map:
             template.add_metric_samples()
             yield template.metric_object
-
     def _get_metric_template_map(self):
         _diskSpace = self._node.get('diskSpace', None)
         _bandwidth = self._node.get('bandwidth', None)
@@ -42,24 +41,22 @@ class NodeCollector(StorjCollector):
                 documentation='Storj node info',
                 data_dict=self._node,
                 data_keys=['nodeID', 'wallet', 'upToDate', 'version',
-                           'allowedVersion', 'quicStatus']
+                           'allowedVersion', 'quicStatus', 'startedAt', 'configuredPort']
             ),
             GaugeMetricTemplate(
                 metric_name='storj_total_diskspace',
                 documentation='Storj total diskspace metrics',
                 data_dict=_diskSpace,
-                data_keys=['used', 'available', 'trash', 'reclaimable']
+                data_keys=['used', 'available', 'trash', 'reclaimable', 'allocated', 'overused']
             ),
             GaugeMetricTemplate(
                 metric_name='storj_total_bandwidth',
                 documentation='Storj total bandwidth metrics',
                 data_dict=_bandwidth,
-                data_keys=['used', 'available', 'reclaimable']
+                data_keys=['used', 'available']
             ),
         ]
         return _metric_template_map
-
-
 class SatCollector(StorjCollector):
     def _refresh_data(self):
         self._node = self.client.node()
