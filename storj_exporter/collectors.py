@@ -48,13 +48,13 @@ class NodeCollector(StorjCollector):
                 metric_name='storj_total_diskspace',
                 documentation='Storj total diskspace metrics',
                 data_dict=_diskSpace,
-                data_keys=['used', 'available', 'trash' , 'reclaimable']
+                data_keys=['used', 'available', 'trash', 'reclaimable']
             ),
             GaugeMetricTemplate(
                 metric_name='storj_total_bandwidth',
                 documentation='Storj total bandwidth metrics',
                 data_dict=_bandwidth,
-                data_keys=['used', 'available' 'reclaimable']
+                data_keys=['used', 'available', 'reclaimable']
             ),
         ]
         return _metric_template_map
