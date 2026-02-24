@@ -104,8 +104,8 @@ class TestApiClientKeys:
         n = client.node()
         assert n.keys() >= {'nodeID', 'wallet', 'lastPinged', 'upToDate', 'version',
                             'allowedVersion', 'startedAt', 'quicStatus'}
-        assert n['diskSpace'].keys() >= {'used', 'available', 'trash', 'overused'}
-        assert n['bandwidth'].keys() >= {'used', 'available'}
+        assert n['diskSpace'].keys() >= {'used', 'available', 'trash', 'overused', 'reclaimable'}
+        assert n['bandwidth'].keys() >= {'used', 'available', 'reclaimable'}
         assert n['satellites'][0].keys() >= {'id', 'url', 'disqualified', 'suspended'}
         assert n['satellites'][0].keys() >= {'id', 'url', 'disqualified', 'suspended'}
 
